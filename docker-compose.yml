@@ -10,9 +10,14 @@ services:
 
   db:
     image: postgres
+    container_name: postgres
+    build: database
+    volumes:
+      - ./dataset:/var/lib/postgresql/shared-data/
     restart: always
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+      POSTGRES_DB: movies
     ports:
-      - 15432:15432
+      - 15432:5432
